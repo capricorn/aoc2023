@@ -16,7 +16,7 @@ def p4p1():
 
     return sum(points)
 
-def copy_cards(card_tuples, matched_cards):
+def copy_cards(card_tuples, matched_cards, memoize=dict()):
     cards = []
 
     for card_id, your_cards, winners in matched_cards:
@@ -27,7 +27,10 @@ def copy_cards(card_tuples, matched_cards):
         cards.append(str(card_id))
         if matches == 0: continue
 
-        cards.extend(copy_cards(card_tuples, card_tuples[card_id:card_id+matches]))
+        if card_id not in memoize:
+            memoize[card_id] = copy_cards(card_tuples, card_tuples[card_id:card_id+matches])
+
+        cards.extend(memoize[card_id])
     
     return cards
 
