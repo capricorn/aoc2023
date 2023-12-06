@@ -49,3 +49,20 @@ def swap(lst, a, b):
     lst[b] = copy
 
     return lst
+
+def apply_k(f, k, initial):
+    counter = 0
+    def pred(val):
+        nonlocal counter
+        result = counter < k
+        counter += 1
+        return result
+    
+    return apply_while(f, pred, initial=initial)
+
+def apply_while(f, pred, initial):
+    result = initial
+    while pred(result):
+        result = f(result)
+    
+    return result
