@@ -28,3 +28,13 @@ def compact_map(f, lst):
 def fold(tree, f):
     return reduce(f, flatten(tree))
 
+def indices(lst, val):
+    if len(lst) == 0:
+        return []
+
+    try:
+        idx = lst.index(val)
+    except ValueError:
+        return []
+
+    return flatten([idx, indices(lst[idx+1:], val)])
