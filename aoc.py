@@ -38,3 +38,14 @@ def indices(lst, val):
         return []
 
     return flatten([idx, indices(lst[idx+1:], val)])
+
+def swap(lst, a, b):
+    if (0 < a > len(lst)) or (0 < b > len(lst)):
+        raise ValueError
+    
+    lst = [ *lst ]
+    copy = lst[a]
+    lst[a] = lst[b]
+    lst[b] = copy
+
+    return lst
