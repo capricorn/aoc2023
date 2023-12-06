@@ -26,5 +26,33 @@ def p6p1():
     #print(winners)
     return prod([ len(w) for w in winners ])
 
+def p6p2():
+    puzzle = read_input()
+    race_time = int(''.join(re.findall('\d+', puzzle[0])))
+    race_dist = int(''.join(re.findall('\d+', puzzle[1])))
 
-print(p6p1())
+    print(race_time, race_dist)
+
+    t = 0
+    d = lambda x, t1: t1*(x-t1)
+    while d(race_time, t) < race_dist:
+        t += 1
+    
+    print(f'First t: {t}')
+    # Minimum amount needed to hold to win
+    min_t = t
+
+    t = race_time
+    while d(race_time, t) < race_dist:
+        t -= 1
+
+    max_t = t
+    print(f'Max t: {t}')
+
+    return (max_t - min_t)+1
+
+
+
+
+#print(p6p1())
+print(p6p2())
