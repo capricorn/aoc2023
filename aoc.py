@@ -1,5 +1,7 @@
 from functools import reduce
 
+# TODO: Optional chaining ideas
+
 def flatten(lst):
     flattened = []
     
@@ -20,4 +22,5 @@ def running_reduce(lst, f, initial=None):
 def running_sum(lst):
     return running_reduce(lst, lambda a,b: a+b)
 
-# TODO: Optional chaining ideas
+def compact_map(f, lst):
+    return filter(lambda k: k != None, map(f, lst))
