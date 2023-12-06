@@ -24,3 +24,7 @@ def running_sum(lst):
 
 def compact_map(f, lst):
     return filter(lambda k: k != None, map(f, lst))
+
+def fold(tree, f):
+    return reduce(f, flatten(tree))
+
